@@ -16,10 +16,10 @@
 
 # Importing from Matlab
 import scipy as sp
-import tensorflow as tf
+
 
 label = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/labels_for_PCA.mat')['labels']
-X = tf.transpose(sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat')['P'])
+X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat')['P']
 
 # PCA
 import StatisticalTools as st
@@ -106,4 +106,11 @@ if __name__ == '__main__':
 #
 # if __name__ == '__main__':
 #     app.run_server(debug=True)
+##
+# import numpy as np
+# A = np.array([[1, 2, 3],[2, 1, 4],[3, 4, 5]])
+# e, v = np.linalg.eig(A)
+#
+# u = np.dot(np.transpose(v), A)
+# l = np.dot(u, v)
 
