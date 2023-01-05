@@ -14,10 +14,15 @@ import time
 ## Declaring constants and functions
 
 data_size = 1024
-num_samples = 4395
-num_ver_samples = 94
-path_to_data = 'C:/Users/vojta/Documents/GitHub/StrojoveUceni/input_data/*/*.csv'
-path_to_ver_data = 'C:/Users/vojta/Documents/GitHub/StrojoveUceni/verification_input_data/*/*.csv'
+# num_samples = 4395
+# num_ver_samples = 94
+# path_to_data = 'C:/Users/vojta/Documents/GitHub/StrojoveUceni/input_data/*/*.csv'
+# path_to_ver_data = 'C:/Users/vojta/Documents/GitHub/StrojoveUceni/verification_input_data/*/*.csv'
+
+# For Lko model
+num_samples = 220
+path_to_data = 'C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_Lko/*/*.csv'
+
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 BATCH_SIZE = 1000
@@ -108,32 +113,32 @@ train_ds = train_ds.cache()
 train_ds = train_ds.batch(BATCH_SIZE)
 train_ds = train_ds.prefetch(AUTOTUNE)
 
-ver_ds = tf.data.Dataset.list_files(path_to_ver_data, shuffle=20)
-ver_ds = ver_ds.filter(lambda x: get_label(x) < 2)
-ver_ds = ver_ds.map(map_files, num_parallel_calls=AUTOTUNE)
-ver_ds = ver_ds.cache()
-ver_ds = ver_ds.batch(BATCH_SIZE)
-ver_ds = ver_ds.prefetch(AUTOTUNE)
+# ver_ds = tf.data.Dataset.list_files(path_to_ver_data, shuffle=20)
+# ver_ds = ver_ds.filter(lambda x: get_label(x) < 2)
+# ver_ds = ver_ds.map(map_files, num_parallel_calls=AUTOTUNE)
+# ver_ds = ver_ds.cache()
+# ver_ds = ver_ds.batch(BATCH_SIZE)
+# ver_ds = ver_ds.prefetch(AUTOTUNE)
 
 ## Plot some train data
 
-# plot_ds = train_ds.take(1)
-# fig, (axes) = plt.subplots(3, 2)
-# for row in plot_ds:
-#     data = row[0]
-#     label = row[1]
-#
-# i = 0
-# for axes_hor in axes:
-#     for ax in axes_hor:
-#         ax.plot(np.arange(0, data_size), data[i, :][0, :])
-#         ax.plot(np.arange(0, data_size), data[i, :][1, :])
-#         if label[i] == 1:
-#             textlabel = 'broken'
-#         else:
-#             textlabel = 'unbroken'
-#         ax.title.set_text(f'train_data, label = {label[i]},  ' + textlabel)
-#         i += 1
+plot_ds = train_ds.take(1)
+fig, (axes) = plt.subplots(3, 2)
+for row in plot_ds:
+    data = row[0]
+    label = row[1]
+
+i = 0
+for axes_hor in axes:
+    for ax in axes_hor:
+        ax.plot(np.arange(0, data_size), data[i, :][0, :])
+        ax.plot(np.arange(0, data_size), data[i, :][1, :])
+        if label[i] == 1:
+            textlabel = 'broken'
+        else:
+            textlabel = 'unbroken'
+        ax.title.set_text(f'train_data, label = {label[i]},  ' + textlabel)
+        i += 1
 
 ## Define function with output
 def ReturnDataset():
