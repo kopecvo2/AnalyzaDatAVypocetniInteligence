@@ -20,6 +20,7 @@
 ## Importing from Matlab
 import scipy as sp
 
+import StatisticalTools
 
 label = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/labels_for_PCA.mat')['labels'][0, :]
 X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat')['P']
@@ -35,59 +36,61 @@ import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import somoclu
+# import somoclu
+#
+# n_rows, n_columns = 20, 20
+#
+# # c1 = np.random.rand(50, 3)/5
+# # c2 = (0.6, 0.1, 0.05) + np.random.rand(50, 3)/5
+# # c3 = (0.4, 0.1, 0.7) + np.random.rand(50, 3)/5
+# # data = np.float32(np.concatenate((c1, c2, c3)))
+# data = X
+# data_vec = data[0:1, :]
+# labels = label
+# # colors = ["red"] * 50
+# # colors.extend(["green"] * 50)
+# # colors.extend(["blue"] * 50)
+# # labels = range(150)
+#
+#
+# i = 0
+# colors = []
+# for lab in labels:
+#     if lab>0:
+#         colors.extend(["red"])
+#     else:
+#         colors.extend(["green"])
+#     i += 1
+#
+# ##
+#
+# som = somoclu.Somoclu(n_columns, n_rows, data=data)
+# ##
+#
+# som.train(epochs=50)
+# ##
+# #som.view_component_planes()
+#
+#
+# ##
+# som.view_umatrix(bestmatches=True, bestmatchcolors=colors, labels=labels)
+#
+# som.view_activation_map(data_vector=data_vec, labels=labels)
+#
+# # som.view_activation_map(None, 0, labels=labels)
+# # som.view_activation_map(None, 1, labels=labels)
+# # som.view_activation_map(None, 2, labels=labels)
+# # som.view_activation_map(None, 3, labels=labels)
+# # som.view_activation_map(None, 4, labels=labels)
+# # som.view_activation_map(None, 5, labels=labels)
+# # som.view_activation_map(None, 6, labels=labels)
+#
+#
+# # som.cluster()
+#
+# som.view_umatrix(bestmatches=True)
 
-n_rows, n_columns = 20, 20
-
-# c1 = np.random.rand(50, 3)/5
-# c2 = (0.6, 0.1, 0.05) + np.random.rand(50, 3)/5
-# c3 = (0.4, 0.1, 0.7) + np.random.rand(50, 3)/5
-# data = np.float32(np.concatenate((c1, c2, c3)))
-data = X
-data_vec = data[0:1, :]
-labels = label
-# colors = ["red"] * 50
-# colors.extend(["green"] * 50)
-# colors.extend(["blue"] * 50)
-# labels = range(150)
-
-
-i = 0
-colors = []
-for lab in labels:
-    if lab>0:
-        colors.extend(["red"])
-    else:
-        colors.extend(["green"])
-    i += 1
-
-##
-
-som = somoclu.Somoclu(n_columns, n_rows, data=data)
-##
-
-som.train(epochs=50)
-##
-#som.view_component_planes()
-
-
-##
-som.view_umatrix(bestmatches=True, bestmatchcolors=colors, labels=labels)
-
-som.view_activation_map(data_vector=data_vec, labels=labels)
-
-# som.view_activation_map(None, 0, labels=labels)
-# som.view_activation_map(None, 1, labels=labels)
-# som.view_activation_map(None, 2, labels=labels)
-# som.view_activation_map(None, 3, labels=labels)
-# som.view_activation_map(None, 4, labels=labels)
-# som.view_activation_map(None, 5, labels=labels)
-# som.view_activation_map(None, 6, labels=labels)
-
-
-# som.cluster()
-
-som.view_umatrix(bestmatches=True)
+StatisticalTools.PlotSOM4(X, label)
 
 # ## PCA
 # import StatisticalTools as st

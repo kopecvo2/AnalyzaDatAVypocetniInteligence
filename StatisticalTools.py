@@ -4,6 +4,7 @@ import StatisticalTools as st
 import plotly.graph_objects as go
 from dash import Dash, dcc, html, Input, Output
 from sklearn_som.som import SOM
+import somoclu
 
 def PCA(X):
     """
@@ -34,7 +35,7 @@ def PCA(X):
 
     H = pd.DataFrame(H, columns=names)
 
-    return H, names
+    return H
 
 
 def PlotPCA(X, label):
@@ -45,8 +46,10 @@ def PlotPCA(X, label):
     :return: Nothing
     """
 
-    H, names = st.PCA(X)
+    H = st.PCA(X)
     H['label'] = label
+
+    names = H.columns
 
     # Dash
     app = Dash(__name__)
@@ -93,3 +96,56 @@ def PlotPCA(X, label):
     app.run_server(debug=True)
 
 
+
+def PlotSOM4(X, label):
+    """
+
+    :param X: Matrix m by n with m samples and n features
+    :param label: m labels for each feature
+    :return: Nothing
+    """
+
+    n_rows, n_columns = 2, 2
+    label0 = np.where(label == 0)[0][0]
+    label1 = np.where(label == 1)[0][0]
+
+    som = somoclu.Somoclu(n_columns, n_rows, data=X)
+    print('SOM training started')
+    som.train(epochs=50)
+
+    print('plotting U matrix with BMU')
+    som.view_umatrix(bestmatches=True, labels=label)
+
+    print('plotting activation map of first sample with label 0')
+    som.view_activation_map(None, label0, bestmatches=True, labels=label)
+
+    print('plotting activation map of first sample with label 1')
+    som.view_activation_map(None, label1, bestmatches=True, labels=label)
+
+    init_df = np.zeros((2, 4))
+    bin_df = pd.DataFrame(init_df, index=['num_of_zero_labeled', 'num_of_one_labeled'], columns=['bin_00', 'bin_01', 'bin_10', 'bin_11'])
+    i = 0
+    for bmu in som.bmus:
+        if np.all(bmu == np.array([0, 0])):
+            usebin = 'bin_00'
+        elif np.all(bmu == np.array([0, 1])):
+            usebin = 'bin_01'
+        elif np.all(bmu == np.array([1, 0])):
+            usebin = 'bin_10'
+        elif np.all(bmu == np.array([1, 1])):
+            usebin = 'bin_11'
+        else:
+            print('BMU sorting Error!!!')
+
+        if label[i] == 0:
+            bin_df[usebin][0] += 1
+        elif label[i] == 1:
+            bin_df[usebin][1] += 1
+        else:
+            print('BMU sorting Error!!!')
+
+        i += 1
+    print('Sample separation into BMU bins with labels')
+    print('------------------------------------------------------')
+    print(bin_df)
+    print('------------------------------------------------------')
