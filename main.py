@@ -30,16 +30,18 @@ import sklearn as sk
 from sklearn.cluster import KMeans
 import plotly.graph_objects as go
 
-# label = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/labels_for_PCA.mat')['labels'][0, :]
-# X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat')['P']
+label = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/From_DP_matlab/labels_for_PCA.mat')['labels'][0, :]
+X = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/From_DP_matlab/Matrix_for_PCA.mat')['P']
 
-# st.PlotPCA(X, label)
-#
-# st.PlotSOMlarge(X, label)
-#
-# st.PlotSOM4(X, label)
+app = st.PlotPCA(X, label)
 
-# st.PlotTSNE(X, label)
+st.PlotSOMlarge(X, label)
+
+st.PlotSOM4(X, label)
+
+st.PlotTSNE(X, label)
+
+app.run_server()
 
 ## Importing aluminum die casting data - all eigenshapes in one matrix
 
@@ -63,16 +65,16 @@ import plotly.graph_objects as go
 
 ## Importing aluminum die casting data - one eigenvector in matrix
 
-import numpy as np
-import scipy as sp
-import StatisticalTools as st
-
-X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_z1.mat')['X_z']
-# label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
-label = np.array([1, 0, 0, 0, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
-
-app = st.PlotPCA(X, label)
-app.run_server()              # This version looks good
+# import numpy as np
+# import scipy as sp
+# import StatisticalTools as st
+#
+# X = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_z1.mat')['X_z']
+# # label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
+# label = np.array([1, 0, 0, 0, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+#
+# app = st.PlotPCA(X, label)
+# app.run_server()              # This version looks good
 
 
 ## Importing aluminum die casting data - MAC criterion diagonals in matrix X
