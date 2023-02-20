@@ -1,9 +1,10 @@
 
-# ## Creating dataset from simulated results
+## Creating dataset from simulated results
 # import CreateDataset
 # import pandas as pd
 # import tensorflow as tf
 # import StatisticalTools as st
+# import sklearn as sk
 #
 # ds = CreateDataset.ReturnDataset()
 #
@@ -14,16 +15,79 @@
 # X = data[:, 0, :]
 # label = label[:]
 # dfX = pd.DataFrame(X)
-
-
+#
+# # st.PlotSOM4(X, label)
+# #
+# # app = st.PlotKmeans(X, label)
+# # app.run_server()
+#
+# st.PlotTSNE(X, label)
 
 ## Importing from Matlab
 import scipy as sp
+import StatisticalTools as st
+import sklearn as sk
+from sklearn.cluster import KMeans
+import plotly.graph_objects as go
 
-import StatisticalTools
+# label = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/labels_for_PCA.mat')['labels'][0, :]
+# X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat')['P']
 
-label = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/labels_for_PCA.mat')['labels'][0, :]
-X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat')['P']
+# st.PlotPCA(X, label)
+#
+# st.PlotSOMlarge(X, label)
+#
+# st.PlotSOM4(X, label)
+
+# st.PlotTSNE(X, label)
+
+## Importing aluminum die casting data - all eigenshapes in one matrix
+
+# import numpy as np
+# import scipy as sp
+# import StatisticalTools as st
+#
+# X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_XX_z.mat')['XX_z']
+# label = np.array([1, 1, 0, 0, 0])   # Improvise - labels are not known
+#
+# app = st.PlotPCA(X, label)
+# app.run_server()
+
+# st.PlotTSNE(X, label)
+#
+# st.PlotSOM4(X, label)
+#
+# app = st.PlotKmeans(X, label)
+# app.run_server()
+
+
+## Importing aluminum die casting data - one eigenvector in matrix
+
+import numpy as np
+import scipy as sp
+import StatisticalTools as st
+
+X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_z1.mat')['X_z']
+# label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
+label = np.array([1, 0, 0, 0, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+
+app = st.PlotPCA(X, label)
+app.run_server()              # This version looks good
+
+
+## Importing aluminum die casting data - MAC criterion diagonals in matrix X
+
+# import numpy as np
+# import scipy as sp
+# import StatisticalTools as st
+#
+# X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/MAC_PCA_X.mat')['diagonals']
+# label = np.array([1, 0, 0, 0, 1, 0, 0, 1, 0, 1])   # Improvise - labels are not known
+#
+# app = st.PlotPCA(X, label)
+# app.run_server()
+
+# st.PlotTSNE(X, label)
 
 ## Plotting
 
@@ -32,10 +96,7 @@ X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/DP_matlab/Matrix_for_PCA.mat'
 
 ## SOM
 # from sklearn_som.som import SOM
-import matplotlib
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+#
 # import somoclu
 #
 # n_rows, n_columns = 20, 20
@@ -90,7 +151,7 @@ from mpl_toolkits.mplot3d import Axes3D
 #
 # som.view_umatrix(bestmatches=True)
 
-StatisticalTools.PlotSOM4(X, label)
+
 
 # ## PCA
 # import StatisticalTools as st
