@@ -1,27 +1,25 @@
 
-## Creating dataset from simulated results
-# import CreateDataset
-# import pandas as pd
-# import tensorflow as tf
-# import StatisticalTools as st
-# import sklearn as sk
-#
-# ds = CreateDataset.ReturnDataset()
-#
-# for row in ds:
-#     data = row[0]
-#     label = row[1]
-#
-# X = data[:, 0, :]
-# label = label[:]
-# dfX = pd.DataFrame(X)
-#
-# # st.PlotSOM4(X, label)
-# #
-# # app = st.PlotKmeans(X, label)
-# # app.run_server()
-#
-# st.PlotTSNE(X, label)
+# Creating dataset from simulated results
+import CreateDataset
+import pandas as pd
+import StatisticalTools as st
+
+ds = CreateDataset.ReturnDataset()
+
+for row in ds:
+    data = row[0]
+    label = row[1]
+
+X = data[:, 0, :]
+label = label[:]
+dfX = pd.DataFrame(X)
+
+# st.PlotSOM4(X, label)
+
+app = st.PlotKmeans(X, label)
+app.run_server()
+
+st.PlotTSNE(X, label)
 
 ## Importing from Matlab
 import scipy as sp
@@ -63,16 +61,16 @@ import plotly.graph_objects as go
 
 ## Importing aluminum die casting data - one eigenvector in matrix
 
-import numpy as np
-import scipy as sp
-import StatisticalTools as st
-
-X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_z1.mat')['X_z']
-# label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
-label = np.array([1, 0, 0, 0, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
-
-app = st.PlotPCA(X, label)
-app.run_server()              # This version looks good
+# import numpy as np
+# import scipy as sp
+# import StatisticalTools as st
+#
+# X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_z1.mat')['X_z']
+# # label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
+# label = np.array([1, 0, 0, 0, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+#
+# app = st.PlotPCA(X, label)
+# app.run_server()              # This version looks good
 
 
 ## Importing aluminum die casting data - MAC criterion diagonals in matrix X
