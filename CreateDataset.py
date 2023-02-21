@@ -21,7 +21,7 @@ data_size = 1024
 
 # For Lko model
 num_samples = 220
-path_to_data = 'C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_Lko/*/*.csv'
+path_to_data = 'C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/input_data_Lko/*/*.csv'
 
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE

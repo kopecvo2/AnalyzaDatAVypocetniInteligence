@@ -16,8 +16,8 @@ dfX = pd.DataFrame(X)
 
 # st.PlotSOM4(X, label)
 
-app = st.PlotKmeans(X, label)
-app.run_server()
+# app = st.PlotKmeans(X, label)
+# app.run_server()
 
 st.PlotTSNE(X, label)
 
