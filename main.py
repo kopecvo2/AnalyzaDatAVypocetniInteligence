@@ -14,12 +14,17 @@ X = data[:, 0, :]
 label = label[:]
 dfX = pd.DataFrame(X)
 
-# st.PlotSOM4(X, label)
+st.check(X)
+
+# app = st.PlotPCA(X, label)
+# app.run_server()
+
+st.PlotTSNE(X, label, perplexity=4)
 
 # app = st.PlotKmeans(X, label)
 # app.run_server()
 
-st.PlotTSNE(X, label)
+# st.PlotTSNE(X, label)
 
 ## Importing from Matlab
 import scipy as sp

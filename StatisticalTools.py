@@ -227,8 +227,8 @@ def PlotKmeans(X, label):
     return app
 
 
-def PlotTSNE(X, label):
-    tsne = sk.manifold.TSNE(n_components=2, perplexity=4)  # perplexity was 50
+def PlotTSNE(X, label, perplexity=50):
+    tsne = sk.manifold.TSNE(n_components=2, perplexity=perplexity)  # perplexity was 50
     print('fitting tsne')
     tsne.fit(X)
     print('tsne computed')
@@ -240,6 +240,18 @@ def PlotTSNE(X, label):
         x=H[:, 0],
         y=H[:, 1],
         mode='markers',
-        marker=dict(color=label)
+        marker=dict(color=label, line=dict(color='black', width=1))
     ))
     fig.show()
+
+
+def check(X):
+    mean = np.mean(X, axis=(0, 1))
+    std = np.std(X, axis=(0, 1))
+    print('checked')
+    print('----------------')
+    print('standard deviation:')
+    print(std)
+    print('mean of X:')
+    print(mean)
+    print('----------------')
