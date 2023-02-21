@@ -33,15 +33,20 @@ import plotly.graph_objects as go
 label = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/From_DP_matlab/labels_for_PCA.mat')['labels'][0, :]
 X = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/From_DP_matlab/Matrix_for_PCA.mat')['P']
 
-app = st.PlotPCA(X, label)
 
-st.PlotSOMlarge(X, label)
+st.check(X)
 
-st.PlotSOM4(X, label)
+# app = st.PlotPCA(X, label)
 
-st.PlotTSNE(X, label)
+# st.PlotSOMlarge(X, label)
 
-app.run_server()
+# st.PlotSOM4(X, label)
+
+# app = st.PlotKmeans(X, label)
+
+# st.PlotTSNE(X, label)
+
+# app.run_server()
 
 ## Importing aluminum die casting data - all eigenshapes in one matrix
 

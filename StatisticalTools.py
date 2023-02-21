@@ -244,3 +244,14 @@ def PlotTSNE(X, label):
         marker=dict(color=label, line=dict(color='black', width=1))
     ))
     fig.show()
+
+def check(X):
+    mean = np.mean(X, axis=(0, 1))
+    std = np.std(X, axis=(0, 1))
+    print('checked')
+    print('----------------')
+    print('standard deviation:')
+    print(std)
+    print('mean of X:')
+    print(mean)
+    print('----------------')
