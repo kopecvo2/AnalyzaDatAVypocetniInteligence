@@ -67,9 +67,11 @@ import numpy as np
 import scipy as sp
 import StatisticalTools as st
 
-X = sp.io.loadmat('C:/Users/vojta/Documents/GitHub/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_z1.mat')['X_z']
+X = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_y2.mat')['X_y']
 # label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
-label = np.array([1, 0, 0, 0, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+label = np.array([0, 0, 0, 1, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+
+st.check(X)
 
 app = st.PlotPCA(X, label)
 app.run_server()              # This version looks good
