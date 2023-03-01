@@ -11,6 +11,7 @@ import sklearn as sk
 Vojtech Kopecky, CTU in Prague, 2023
 """
 
+
 def PCA(X):
     """
 
@@ -188,7 +189,6 @@ def PlotSOM4(X, label):
 
 
 def PlotKmeans(X, label):
-
     kmeans = KMeans(n_clusters=2)
 
     kmeans.fit(X)
@@ -244,7 +244,8 @@ def PlotTSNE(X, label, perplexity=50):
     ))
     fig.show()
 
-def check(X):
+
+def check(X):                       # Not working, wrong aproach
     mean = np.mean(X, axis=(0, 1))
     std = np.std(X, axis=(0, 1))
     print('checked')
@@ -254,3 +255,20 @@ def check(X):
     print('mean of X:')
     print(mean)
     print('----------------')
+
+
+def zscore_columns(X):
+    mean = np.mean(X, axis=0)
+    std = np.std(X, axis=0)
+    X_new = (X-mean) / std
+    mean_new = np.mean(X_new, axis=0)
+    std_new = np.std(X_new, axis=0)
+    print('zscore check')
+    print('----------------')
+    print('standard deviation:')
+    print(std_new)
+    print('mean of X:')
+    print(mean_new)
+    print('----------------')
+    return X_new
+

@@ -1,4 +1,3 @@
-
 ## Creating dataset from simulated results
 # import CreateDataset
 # import pandas as pd
@@ -67,15 +66,18 @@ import numpy as np
 import scipy as sp
 import StatisticalTools as st
 
-X = sp.io.loadmat('C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/input_data_aluminum_casting/PCA_X_y2.mat')['X_y']
+X = sp.io.loadmat(
+    'C:/Users/pc/OneDrive - České vysoké učení technické v Praze/DATA_D/_GithubProjectData/AnalyzaDatAVypocetniInteligence/new_input_aluminum_casting/PCA_X_z1.mat')[
+    'X_z']
 # label = np.array([0, 0, 1, 0, 1])   # Improvise - labels are not known (labels for first eigenvector)
-label = np.array([0, 0, 0, 1, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+# label = np.array([0, 0, 0, 1, 1])   # Improvise - labels are not known (labels for eigenvector 2, 3, 4, 5, 6, 7)
+# label = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1])     # labels for new MAC
+label = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1])
 
-st.check(X)
+X = st.zscore_columns(X)
 
 app = st.PlotPCA(X, label)
-app.run_server()              # This version looks good
-
+app.run_server()  # This version looks good
 
 ## Importing aluminum die casting data - MAC criterion diagonals in matrix X
 
@@ -152,7 +154,6 @@ app.run_server()              # This version looks good
 # # som.cluster()
 #
 # som.view_umatrix(bestmatches=True)
-
 
 
 # ## PCA
@@ -255,4 +256,3 @@ app.run_server()              # This version looks good
 #
 # u = np.dot(np.transpose(v), A)
 # l = np.dot(u, v)
-
